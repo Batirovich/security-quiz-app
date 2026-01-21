@@ -1,5 +1,5 @@
 // Admin Panel Logic
-const API_URL = 'http://localhost:3000';
+const API_URL = '';
 const ADMIN_PASSWORD = 'admin123'; // Change this for security
 
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,5 +1,5 @@
 // Login and Registration Logic
-const API_URL = 'http://localhost:3000';
+const API_URL = '';
 
 document.addEventListener('DOMContentLoaded', function() {
     const loginSection = document.getElementById('loginSection');
