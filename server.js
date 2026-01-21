@@ -11,30 +11,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname)); // Serve static files
 
-// Data storage file
-const DATA_FILE = path.join(__dirname, 'data.json');
-
-// Initialize data file if it doesn't exist
-function initDataFile() {
-    if (!fs.existsSync(DATA_FILE)) {
-        const initialData = {
-            users: [],
-            quizActive: false,
-            leaderboard: []
-        };
-        fs.writeFileSync(DATA_FILE, JSON.stringify(initialData, null, 2));
-    }
-}
+// In-memory data storage (works on Render's ephemeral storage)
+let appData = {
+    users: [],
+    quizActive: false,
+    leaderboard: []
+};
 
 // Read data
 function readData() {
-    const data = fs.readFileSync(DATA_FILE, 'utf8');
-    return JSON.parse(data);
+    return appData;
 }
 
 // Write data
 function writeData(data) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+    appData = data;
 }
 
 // Security Questions for Information Security Course
@@ -242,7 +233,7 @@ const questions = [
 ];
 
 // Initialize
-initDataFile();
+// initDataFile();
 
 // API Routes
 
