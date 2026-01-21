@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Security Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔑 Admin Panel</h1>
+        
+        <div id="adminLoginSection" class="section">
+            <h3>Admin Login</h3>
+            <form id="adminLoginForm">
+                <input type="password" id="adminPassword" placeholder="Admin Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p><a href="index.html">Back to Student Login</a></p>
+        </div>
+
+        <div id="adminDashboard" class="section" style="display:none;">
+            <div class="admin-header">
+                <h2>Dashboard</h2>
+                <button onclick="adminLogout()">Logout</button>
+            </div>
+
+            <div class="admin-controls">
+                <h3>Quiz Control</h3>
+                <button id="startQuizBtn" onclick="startQuiz()">🚀 Start Quiz</button>
+                <button id="stopQuizBtn" onclick="stopQuiz()" style="display:none;">⏹️ Stop Quiz</button>
+                <button onclick="resetQuiz()">🔄 Reset All Data</button>
+                <p>Status: <strong id="quizStatus">Not Started</strong></p>
+            </div>
+
+            <div class="admin-section">
+                <h3>📊 Registered Students</h3>
+                <table id="studentsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Password Strength</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTableBody"></tbody>
+                </table>
+                <button onclick="exportCredentials()">📥 Export Credentials (CSV)</button>
+            </div>
+
+            <div class="admin-section">
+                <h3>🏆 Leaderboard</h3>
+                <table id="leaderboardTable">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Completion Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="admin-section">
+                <h3>⚠️ Password Security Analysis</h3>
+                <div id="passwordAnalysis"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

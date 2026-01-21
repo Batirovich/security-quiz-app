@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Information Security</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Information Security Quiz</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div id="waitingSection" class="section">
+            <h2>⏳ Waiting for Admin to Start Quiz</h2>
+            <p>The quiz will begin soon. Please wait for the instructor to start the session.</p>
+            <button onclick="checkQuizStatus()">Refresh Status</button>
+            <div class="leaderboard">
+                <h3>🏆 Current Leaderboard</h3>
+                <div id="leaderboardList"></div>
+            </div>
+        </div>
+
+        <div id="quizSection" class="section" style="display:none;">
+            <div class="quiz-progress">
+                <span>Question <span id="currentQuestion">1</span> of <span id="totalQuestions">20</span></span>
+                <span>Score: <span id="currentScore">0</span></span>
+            </div>
+            <div id="questionContainer">
+                <h3 id="questionText"></h3>
+                <div id="answersContainer" class="answers"></div>
+            </div>
+        </div>
+
+        <div id="resultsSection" class="section" style="display:none;">
+            <h2>🎉 Quiz Completed!</h2>
+            <div class="results">
+                <h3>Your Score: <span id="finalScore"></span></h3>
+                <p id="scoreMessage"></p>
+            </div>
+            <div class="leaderboard">
+                <h3>🏆 Final Leaderboard</h3>
+                <div id="finalLeaderboard"></div>
+            </div>
+            <button onclick="location.reload()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
