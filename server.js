@@ -262,6 +262,8 @@ app.post('/api/register', (req, res) => {
     });
     
     writeData(data);
+    console.log(`✅ User registered: ${email}`);
+    console.log(`📊 Total users: ${data.users.length}`);
     res.json({ message: 'Registration successful' });
 });
 
@@ -269,13 +271,20 @@ app.post('/api/register', (req, res) => {
 app.post('/api/login', (req, res) => {
     const { email, password } = req.body;
     
+    console.log(`🔐 Login attempt: ${email}`);
+    
     const data = readData();
+    console.log(`📊 Users in database: ${data.users.length}`);
+    console.log(`📋 Registered users:`, data.users.map(u => ({ email: u.email, password: u.password })));
+    
     const user = data.users.find(u => u.email === email && u.password === password);
     
     if (!user) {
+        console.log(`❌ Login failed for: ${email}`);
         return res.status(401).json({ error: 'Invalid credentials' });
     }
     
+    console.log(`✅ Login successful: ${email}`);
     res.json({
         message: 'Login successful',
         user: { name: user.name, email: user.email },

@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
 
+        console.log('Attempting login with:', email);
+
         try {
             const response = await fetch(`${API_URL}/api/login`, {
                 method: 'POST',
@@ -68,15 +70,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const data = await response.json();
             
+            console.log('Login response:', response.status, data);
+            
             if (response.ok) {
                 localStorage.setItem('user', JSON.stringify(data.user));
                 localStorage.setItem('token', data.token);
+                alert('Login successful! Redirecting to quiz...');
                 window.location.href = 'quiz.html';
             } else {
-                alert(data.error || 'Login failed');
+                alert(data.error || 'Login failed. Please check your email and password.');
+                console.error('Login error:', data);
             }
         } catch (error) {
-            alert('Error connecting to server. Please try again.');
+            console.error('Login error:', error);
+            alert('Error connecting to server: ' + error.message);
         }
     });
 });
